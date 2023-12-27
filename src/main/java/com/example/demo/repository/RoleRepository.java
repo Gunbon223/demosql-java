@@ -4,8 +4,10 @@ import com.example.demo.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface RoleRepository extends JpaRepository<Role, Integer>
 {
-    @Query(value = "select  * from Role where id = ?",nativeQuery = true)
-    Role findByRoleid(int id);
+    @Query(value = "select * from Role where name = ?",nativeQuery = true)
+    Role findByRoleName(String name);
 }
