@@ -20,4 +20,12 @@ public class RoleService {
             System.out.println(role.toString());
         }
     }
+
+    public void addRole(String name) {
+        roleRepository.insertRole(name);
+        System.out.println("Insert thanh cong");
+    }
+
+
+
 }

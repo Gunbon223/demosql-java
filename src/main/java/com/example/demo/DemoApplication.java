@@ -2,12 +2,15 @@ package com.example.demo;
 
 import com.example.demo.entities.User;
 import com.example.demo.services.CourseService;
+import com.example.demo.services.MenuService;
 import com.example.demo.services.RoleService;
 import com.example.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.Scanner;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
@@ -22,19 +25,15 @@ public class DemoApplication implements CommandLineRunner {
     private CourseService courseService;
     @Autowired
     private RoleService  roleService;
+    @Autowired
+    private MenuService menuService;
 
     @Override
     public void run(String... args) throws Exception {
-        findUSerByName();
-        findRole();
-        courseService.findCourseByLength();
+        Scanner scanner = new Scanner(System.in);
+        menuService.displayMenu(scanner);
+    }
 
-    }
-    public void findUSerByName() {
-        System.out.println("Nhap ten: ");
-        String name =  new java.util.Scanner(System.in).nextLine() ;
-        userService.findUserbyName(name);
-    }
 
 
     public void findRole() {
