@@ -31,7 +31,7 @@ public class DemoApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        menuService.displayMenu(scanner);
+        userService.UserWithAccountInfo();
     }
 
 

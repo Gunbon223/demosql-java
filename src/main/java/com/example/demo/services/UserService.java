@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.User;
+import com.example.demo.entities.UserWithAccInfo;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,16 @@ public class UserService {
             System.out.println(user.toString());
         }
     }
+
+    public void UserWithAccountInfo() {
+        List<UserWithAccInfo>  userWithAccountInfoList = userRepository.findUserWithAccountInfoById();
+        if (userWithAccountInfoList == null) {
+            System.out.println("User not found");
+        } else {
+            System.out.println(userWithAccountInfoList.toString());
+        }
+    }
+
 
 
     public boolean findUserByPhone(String phone) {
