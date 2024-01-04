@@ -1,14 +1,13 @@
 package com.example.demo.repository;
 
+import com.example.demo.DTO.UserAccDTO;
 import com.example.demo.entities.User;
-import com.example.demo.entities.UserWithAccInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "select  * from User where id = ?",nativeQuery = true)
@@ -16,8 +15,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "select  * from User where phone = ?",nativeQuery = true)
     User findByUserPhone(String phone);
 
-    @Query(value = "SELECT u.* FROM User u JOIN AccountBanking ab ON u.bank_id = ab.user_id", nativeQuery = true)
-    List<UserWithAccInfo> findUserWithAccountInfoById();
+    @Query("SELECT new com.example.demo.DTO.UserAccDTO(u.email,u.name,u.phone,ab.accountName,ab.accountNumber)  FROM User u JOIN AccountBanking ab ON u.bankId = ab.id")
+    List<UserAccDTO> findUserWithAccountInfo();
 
 
     @Modifying

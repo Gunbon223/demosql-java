@@ -1,13 +1,12 @@
 package com.example.demo.services;
 
+import com.example.demo.DTO.UserAccDTO;
 import com.example.demo.entities.User;
-import com.example.demo.entities.UserWithAccInfo;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 @Service
@@ -25,9 +24,9 @@ public class UserService {
     }
 
     public void UserWithAccountInfo() {
-        List<UserWithAccInfo>  userWithAccountInfoList = userRepository.findUserWithAccountInfoById();
+        List<UserAccDTO>  userWithAccountInfoList = userRepository.findUserWithAccountInfo();
         if (userWithAccountInfoList == null) {
-            System.out.println("User not found");
+            System.out.println("No user");
         } else {
             System.out.println(userWithAccountInfoList.toString());
         }
